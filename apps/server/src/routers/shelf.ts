@@ -33,7 +33,7 @@ import { queueCovers } from './queue-covers'
 const PAGE_TIMEOUT_MS = 10_000
 const BROWSER_UA = 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36'
 // Open Library asks API clients to name themselves
-const API_UA = 'MyLibrary/1.0 (self-hosted home library; +https://github.com/elazarcoh/my-library)'
+const API_UA = 'MyLibrary/1.0 (self-hosted home library; +https://github.com/elazarcoh/shelfkeeper)'
 // the National Library's firewall turns away a client that names itself, so it is asked like Simania (#157)
 const headersFor = (provider: string, accept: string) =>
   provider === 'simania' || provider === 'nli' ? { accept, 'user-agent': BROWSER_UA, 'accept-language': 'he,en;q=0.8' } : { accept, 'user-agent': API_UA }

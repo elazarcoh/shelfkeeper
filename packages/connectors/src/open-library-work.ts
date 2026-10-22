@@ -2,7 +2,7 @@ import { extractPage, providerById, type PageCapture } from '@mylib/domain'
 import type { HttpClient } from './http'
 
 // Open Library asks API clients to name themselves (the same text the server's shelf router sends)
-const API_UA = 'MyLibrary/1.0 (self-hosted home library; +https://github.com/elazarcoh/my-library)'
+const API_UA = 'MyLibrary/1.0 (self-hosted home library; +https://github.com/elazarcoh/shelfkeeper)'
 const TIMEOUT_MS = 10_000
 
 /**
