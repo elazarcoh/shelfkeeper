@@ -1,0 +1,110 @@
+diff --git a/cjs/src/connection.js b/cjs/src/connection.js
+index 07f6716702ac888215c86ad6e0071aaf55ae519c..bccf249d9e0fce0727e53437742e06a3f7a6d02e 100644
+--- a/cjs/src/connection.js
++++ b/cjs/src/connection.js
+@@ -160,6 +160,13 @@ function Connection(options, queues = {}, { onopen = noop, onend = noop, onclose
+     if (stream)
+       return queryError(q, Errors.generic('COPY_IN_PROGRESS', 'You cannot execute queries during copy'))
+ 
++    // my-library patch (crash): a query sent on a connection whose socket already closed (sql.begin's
++    // ROLLBACK after a drop, a reserved connection) used to be written to the null socket in a
++    // setImmediate: an uncaught TypeError. Reject it instead; true keeps the pool from moving the
++    // closed connection to its full queue.
++    if (!socket)
++      return (queryError(q, Errors.connection('CONNECTION_CLOSED', options)), true)
++
+     if (q.cancelled)
+       return
+ 
+@@ -446,11 +453,35 @@ function Connection(options, queues = {}, { onopen = noop, onend = noop, onclose
+ 
+     socket.removeAllListeners()
+     socket = null
++    // my-library patch (stale write): bytes queued for the dead socket must not prefix the next
++    // StartupMessage, and a cleared timer id must not stop the next write from being scheduled.
++    chunk = nextWriteTimer = null
+ 
+-    if (initial)
++    // my-library patch (hot loop): a close while connecting counts as a failed attempt and waits the
++    // normal, growing backoff; upstream reconnected after 0 ms. The only query current here is an
++    // internal one (array types, session state) of the dead session: drop it, so it cannot capture
++    // the next session's startup error. This also delays failover to a second host (upstream tried it
++    // at once); My Library connects to a single host. connect_timeout does not bound a handshake that
++    // keeps closing: closed() cancels it above on every attempt, so such a connect retries on the backoff.
++    if (initial) {
++      query = errorResponse = null
++      closedTime = performance.now()
++      delay = (typeof backoff === 'function' ? backoff(++options.shared.retries) : backoff) * 1000
+       return reconnect()
++    }
+ 
+     !hadError && (query || sent.length) && error(Errors.connection('CONNECTION_CLOSED', options, socket))
++    // my-library patch (stale query): forget the query that was current on the dead socket, and any
++    // error stored for it. Upstream kept both, so the next connect took the server's refusal (57P03,
++    // 55000, 3D000) for that query's error and reconnected at once, forever (connect_timeout is
++    // cancelled above), and a graceful end() waited on that query for good.
++    query = errorResponse = results = null
++    result = new Result()
++    // ... and its row counter: a drop mid DataRow stream left it at k, so the next query's rows started
++    // at result[k] (only CommandComplete resets it).
++    rows = 0
++    // my-library patch (end): an end() that was already waiting on that query settles now.
++    ended && (ended(), ending = ended = null)
+     closedTime = performance.now()
+     hadError && options.shared.retries++
+     delay = (typeof backoff === 'function' ? backoff(options.shared.retries) : backoff) * 1000
+diff --git a/src/connection.js b/src/connection.js
+index 1b1cccde43b4570d5d071d6ffaab2669b3c2065a..30cceb8a2b2da84633ccf27b8434cf5780b47499 100644
+--- a/src/connection.js
++++ b/src/connection.js
+@@ -160,6 +160,13 @@ function Connection(options, queues = {}, { onopen = noop, onend = noop, onclose
+     if (stream)
+       return queryError(q, Errors.generic('COPY_IN_PROGRESS', 'You cannot execute queries during copy'))
+ 
++    // my-library patch (crash): a query sent on a connection whose socket already closed (sql.begin's
++    // ROLLBACK after a drop, a reserved connection) used to be written to the null socket in a
++    // setImmediate: an uncaught TypeError. Reject it instead; true keeps the pool from moving the
++    // closed connection to its full queue.
++    if (!socket)
++      return (queryError(q, Errors.connection('CONNECTION_CLOSED', options)), true)
++
+     if (q.cancelled)
+       return
+ 
+@@ -446,11 +453,35 @@ function Connection(options, queues = {}, { onopen = noop, onend = noop, onclose
+ 
+     socket.removeAllListeners()
+     socket = null
++    // my-library patch (stale write): bytes queued for the dead socket must not prefix the next
++    // StartupMessage, and a cleared timer id must not stop the next write from being scheduled.
++    chunk = nextWriteTimer = null
+ 
+-    if (initial)
++    // my-library patch (hot loop): a close while connecting counts as a failed attempt and waits the
++    // normal, growing backoff; upstream reconnected after 0 ms. The only query current here is an
++    // internal one (array types, session state) of the dead session: drop it, so it cannot capture
++    // the next session's startup error. This also delays failover to a second host (upstream tried it
++    // at once); My Library connects to a single host. connect_timeout does not bound a handshake that
++    // keeps closing: closed() cancels it above on every attempt, so such a connect retries on the backoff.
++    if (initial) {
++      query = errorResponse = null
++      closedTime = performance.now()
++      delay = (typeof backoff === 'function' ? backoff(++options.shared.retries) : backoff) * 1000
+       return reconnect()
++    }
+ 
+     !hadError && (query || sent.length) && error(Errors.connection('CONNECTION_CLOSED', options, socket))
++    // my-library patch (stale query): forget the query that was current on the dead socket, and any
++    // error stored for it. Upstream kept both, so the next connect took the server's refusal (57P03,
++    // 55000, 3D000) for that query's error and reconnected at once, forever (connect_timeout is
++    // cancelled above), and a graceful end() waited on that query for good.
++    query = errorResponse = results = null
++    result = new Result()
++    // ... and its row counter: a drop mid DataRow stream left it at k, so the next query's rows started
++    // at result[k] (only CommandComplete resets it).
++    rows = 0
++    // my-library patch (end): an end() that was already waiting on that query settles now.
++    ended && (ended(), ending = ended = null)
+     closedTime = performance.now()
+     hadError && options.shared.retries++
+     delay = (typeof backoff === 'function' ? backoff(options.shared.retries) : backoff) * 1000

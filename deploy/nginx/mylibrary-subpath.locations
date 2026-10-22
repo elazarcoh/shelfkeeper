@@ -1,0 +1,60 @@
+# My Library under a sub-path of an existing site, e.g. http://192.168.1.50/mylibrary/ (README → Serving
+# under a sub-path). These are `location` blocks, not a server: paste them into (or `include` them from) the
+# `server { ... }` block that answers for that host, then reload nginx. The image must be built with
+# BASE_PATH=/mylibrary (deploy/.env); to use another prefix, change it here and there alike.
+#
+# The prefix is kept: `proxy_pass http://$upstream;` has no URI part, so nginx passes the request path through
+# unchanged (/mylibrary/trpc/... reaches the app as /mylibrary/trpc/...). The app also accepts the path with
+# the prefix stripped, but keeping it needs nothing more here. `$upstream` is resolved at request time through
+# the `resolver` the surrounding config already sets (see mylibrary.home.arpa.conf); it is not redefined here.
+
+location = /mylibrary {
+    return 301 /mylibrary/;
+}
+
+# ^~ : regex locations elsewhere in the server (e.g. static-file caching) never take these requests;
+# the nested regex locations below are still checked.
+location ^~ /mylibrary/ {
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    set $upstream my-library:3000;
+    proxy_pass http://$upstream;
+
+    # a 2000-row CSV import can outlast nginx's default 60 s (spec §3); tRPC batching can put it anywhere in the path
+    location ~ ^/mylibrary/trpc/.*csv\.import {
+        client_max_body_size 0;
+        proxy_read_timeout 300s;
+        proxy_send_timeout 300s;
+        set $upstream my-library:3000;
+        proxy_pass http://$upstream;
+    }
+
+    # restoring a backup (pg_restore + merging covers) can take minutes on the Pi
+    location ~ ^/mylibrary/trpc/.*backups\.restore {
+        proxy_read_timeout 600s;
+        proxy_send_timeout 600s;
+        set $upstream my-library:3000;
+        proxy_pass http://$upstream;
+    }
+
+    # restore from an uploaded backup: stream it through, and wait while the app checks it
+    location = /mylibrary/admin/backups/upload {
+        client_max_body_size 0;
+        proxy_request_buffering off;
+        proxy_read_timeout 600s;
+        proxy_send_timeout 600s;
+        set $upstream my-library:3000;
+        proxy_pass http://$upstream;
+    }
+
+    # backup downloads: stream them, never buffer to the SD card
+    location ^~ /mylibrary/admin/backups/file/ {
+        proxy_buffering off;
+        proxy_read_timeout 600s;
+        set $upstream my-library:3000;
+        proxy_pass http://$upstream;
+    }
+}

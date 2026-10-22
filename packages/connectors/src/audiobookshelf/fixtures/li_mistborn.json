@@ -1,0 +1,39 @@
+{
+  "id": "li_mistborn",
+  "libraryId": "lib_books",
+  "mediaType": "book",
+  "isMissing": false,
+  "isInvalid": false,
+  "path": "/audiobooks/Brandon Sanderson/Mistborn/The Final Empire",
+  "relPath": "Brandon Sanderson/Mistborn/The Final Empire",
+  "isFile": false,
+  "addedAt": 1717000000000,
+  "updatedAt": 1717000500000,
+  "media": {
+    "metadata": {
+      "title": "The Final Empire",
+      "subtitle": "Mistborn, Book 1",
+      "authors": [{ "id": "aut_1", "name": "Brandon Sanderson" }],
+      "narrators": ["Michael Kramer"],
+      "series": [{ "id": "ser_1", "name": "Mistborn", "sequence": "1" }],
+      "genres": ["Fantasy"],
+      "publishedYear": "2006",
+      "publishedDate": null,
+      "publisher": "Macmillan Audio",
+      "description": "<p>For a thousand years the ash fell.</p>",
+      "descriptionPlain": "For a thousand years the ash fell.",
+      "isbn": null,
+      "asin": "B002UZMLXM",
+      "language": "English",
+      "explicit": false,
+      "authorName": "Brandon Sanderson",
+      "seriesName": "Mistborn #1"
+    },
+    "coverPath": "/audiobooks/Brandon Sanderson/Mistborn/The Final Empire/cover.jpg",
+    "tags": ["Epic"],
+    "duration": 88034.6,
+    "numAudioFiles": 2,
+    "audioFiles": [{ "index": 1, "ino": "1" }, { "index": 2, "ino": "2" }],
+    "ebookFile": null
+  }
+}

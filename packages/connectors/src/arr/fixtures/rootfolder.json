@@ -1,0 +1,4 @@
+[
+  { "id": 1, "name": "Books", "path": "/books/", "accessible": true },
+  { "id": 2, "name": "Audiobooks", "path": "/audiobooks", "accessible": true }
+]

@@ -1,0 +1,108 @@
+{
+  "url": "https://simania.co.il/bookdetails.php?item_id=989039",
+  "title": "הנסיכה הקסומה [מהדורת 2018] מאת ויליאם גולדמן | סימניה - ספרים, סופרים וחברים",
+  "ld": [
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      "additionalType": "Product",
+      "@id": "https://simania.co.il/bookdetails.php?item_id=989039",
+      "sku": "989039",
+      "productID": "989039",
+      "name": "הנסיכה הקסומה [מהדורת 2018]",
+      "author": {
+        "@type": "Person",
+        "name": "ויליאם גולדמן"
+      },
+      "url": "https://simania.co.il/bookdetails.php?item_id=989039",
+      "inLanguage": "he",
+      "description": "הוצאת כתר גאה לפרסם תרגום חדש של הנסיכה הקסומה,\r\nמספרי ההרפתקה הנפלאים, המצחיקים, המופרכים, המשכנעים והקסומים שנכתבו.\r\n\r",
+      "isbn": "0",
+      "publisher": {
+        "@type": "Organization",
+        "name": "כתר"
+      },
+      "bookFormat": "https://schema.org/Paperback",
+      "datePublished": "2018",
+      "numberOfPages": 402,
+      "image": "https://cdn.simania.co.il/bookimages/covers98/989039.jpg",
+      "genre": "ספרות » מדע בדיוני ופנטזיה",
+      "keywords": "ספרות » מדע בדיוני ופנטזיה, ספרות, מדע בדיוני ופנטזיה",
+      "about": {
+        "@type": "Thing",
+        "name": "ספרות"
+      },
+      "translator": {
+        "@type": "Person",
+        "name": "איריס ברעם"
+      },
+      "workExample": {
+        "@type": "Book",
+        "@id": "https://simania.co.il/bookdetails.php?item_id=989039#edition",
+        "bookFormat": "https://schema.org/Paperback",
+        "isbn": "0",
+        "datePublished": "2018",
+        "inLanguage": "he"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "דף הבית",
+          "item": "https://simania.co.il"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "ספרות",
+          "item": "https://simania.co.il/category.php?categoryId=15"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "הנסיכה הקסומה [מהדורת 2018]"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "viewport": "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=3, user-scalable=yes",
+    "next-size-adjust": "",
+    "theme-color": "#2563eb",
+    "color-scheme": "light",
+    "description": "הנסיכה הקסומה [מהדורת 2018] - מדע בדיוני ופנטזיה מאת ויליאם גולדמן. דירוג 4.9 כוכבים, 7 ביקורות. קרא ביקורות וקנה בסימניה.",
+    "keywords": "הנסיכה הקסומה [מהדורת 2018], ויליאם גולדמן, ספרות » מדע בדיוני ופנטזיה, ביקורות ספרים, קהילת קוראים, תרגום איריס ברעם, ספרים, ביקורות ספרים, קהילת קוראים, סימני",
+    "format-detection": "telephone=no",
+    "og:locale": "he_IL",
+    "og:locale:alternate": "en_US",
+    "book:author": "ויליאם גולדמן",
+    "book:isbn": "0",
+    "book:release_date": "2018",
+    "book:tag": "402 עמודים",
+    "rating:value": "4.8571",
+    "rating:count": "7",
+    "link-preload": "<https://cdn.simania.co.il/bookimages/covers98/989039.jpg>; rel=preload; as=image; fetchpriority=high",
+    "mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-title": "Simania",
+    "apple-mobile-web-app-status-bar-style": "default",
+    "og:title": "הנסיכה הקסומה [מהדורת 2018] מאת ויליאם גולדמן",
+    "og:description": "הנסיכה הקסומה [מהדורת 2018] - מדע בדיוני ופנטזיה מאת ויליאם גולדמן. דירוג 4.9 כוכבים, 7 ביקורות. קרא ביקורות וקנה בסימניה.",
+    "og:url": "https://simania.co.il/bookdetails.php?item_id=989039",
+    "og:site_name": "סימניה",
+    "og:image": "https://cdn.simania.co.il/bookimages/covers98/989039.jpg",
+    "og:image:width": "400",
+    "og:image:height": "600",
+    "og:image:alt": "הנסיכה הקסומה [מהדורת 2018] מאת ויליאם גולדמן",
+    "og:type": "book",
+    "twitter:card": "summary_large_image",
+    "twitter:site": "@simania_il",
+    "twitter:title": "הנסיכה הקסומה [מהדורת 2018] מאת ויליאם גולדמן",
+    "twitter:description": "הנסיכה הקסומה [מהדורת 2018] - מדע בדיוני ופנטזיה מאת ויליאם גולדמן. דירוג 4.9 כוכבים, 7 ביקורות. קרא ביקורות וקנה בסימניה.",
+    "twitter:image": "https://cdn.simania.co.il/bookimages/covers98/989039.jpg",
+    "twitter:image:alt": "הנסיכה הקסומה [מהדורת 2018] מאת ויליאם גולדמן"
+  }
+}

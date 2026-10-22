@@ -1,0 +1,3 @@
+* text=auto eol=lf
+# a fixture whose exact bytes matter (BOM + CRLF, like a real Goodreads export) — never normalized
+e2e/fixtures/reading-log.csv -text

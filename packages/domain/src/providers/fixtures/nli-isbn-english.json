@@ -1,0 +1,42 @@
+[ {
+  "@id" : "https://www.nli.org.il/en/books/NNL_ALEPH990020463320205171",
+  "http://purl.org/dc/elements/1.1/creator" : [ {
+    "@value" : "J. K. Rowling$$QRowling, J. K"
+  } ],
+  "http://purl.org/dc/elements/1.1/language" : [ {
+    "@value" : "eng"
+  } ],
+  "http://purl.org/dc/elements/1.1/recordid" : [ {
+    "@value" : "990020463320205171"
+  } ],
+  "http://purl.org/dc/elements/1.1/subject" : [ {
+    "@value" : "Potter, Harry (Fictitious character); Wizards -- Fiction"
+  } ],
+  "http://purl.org/dc/elements/1.1/identifier" : [ {
+    "@value" : "NNL_ALEPH21193193120005171"
+  } ],
+  "http://purl.org/dc/elements/1.1/date" : [ {
+    "@value" : "19980101"
+  } ],
+  "http://purl.org/dc/elements/1.1/source" : [ {
+    "@value" : "The National Library of Israel"
+  } ],
+  "http://purl.org/dc/elements/1.1/format" : [ {
+    "@value" : "251 pages ; 20 cm."
+  } ],
+  "http://purl.org/dc/elements/1.1/title" : [ {
+    "@value" : "Harry Potter and the Chamber of Secrets / J.K. Rowling."
+  } ],
+  "http://purl.org/dc/elements/1.1/linkToMarc" : [ {
+    "@id" : "https://iiif.nli.org.il/IIIFv21/marc/bib/990020463320205171"
+  } ],
+  "http://purl.org/dc/elements/1.1/isbn" : [ {
+    "@value" : "0747538484"
+  } ],
+  "http://purl.org/dc/elements/1.1/type" : [ {
+    "@value" : "book"
+  } ],
+  "http://purl.org/dc/elements/1.1/publisher" : [ {
+    "@value" : "London : Bloomsbury"
+  } ]
+} ]

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+.env
+*.log
+test-results/
+playwright-report/
+.DS_Store
+dev-data/
+# pnpm dev's shared backups and covers (server + worker)
+/data/

@@ -1,0 +1,80 @@
+[
+  {
+    "@id": "https://www.nli.org.il/en/books/NNL_ALEPH990019857740205171",
+    "http://purl.org/dc/elements/1.1/format": [
+      {
+        "@value": "316, [1] עמודים ; 21 ס\"מ."
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/publisher": [
+      {
+        "@value": "תל אביב : משכל"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/subject": [
+      {
+        "@value": "Potter, Harry (Fictitious character); Wizards -- Juvenile fiction"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/contributor": [
+      {
+        "@value": "בר הלל סמו, גילי (1974-)$$Qבר הלל סמו, גילי"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/linkToMarc": [
+      {
+        "@id": "https://iiif.nli.org.il/IIIFv21/marc/bib/990019857740205171"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/identifier": [
+      {
+        "@value": "NNL_ALEPH21206807640005171"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/recordid": [
+      {
+        "@value": "990019857740205171"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/accessRights": [
+      {
+        "@value": "no_online_access"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/title": [
+      {
+        "@value": "הארי פוטר ואבן החכמים / ג'י. קי רולינג ; מאנגלית - גילי בר הלל."
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/creator": [
+      {
+        "@value": "רולינג, ג'יי. קיי., 1965-$$Qרולינג, ג'יי. קיי., 1965-"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/language": [
+      {
+        "@value": "heb"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/thumbnail": [
+      {
+        "@value": "https://nli.alma.exlibrisgroup.com/view/delivery/thumbnail/12303779780005171"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/source": [
+      {
+        "@value": "$$VThe National Library of Israel$$ONNL_ALEPH21206807640005171"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/type": [
+      {
+        "@value": "book"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/date": [
+      {
+        "@value": "20000101"
+      }
+    ]
+  }
+]

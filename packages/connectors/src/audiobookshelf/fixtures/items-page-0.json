@@ -1,0 +1,14 @@
+{
+  "results": [
+    { "id": "li_mistborn", "mediaType": "book", "isMissing": false, "media": { "metadata": { "title": "The Final Empire", "authorName": "Brandon Sanderson" } } },
+    { "id": "li_hp1", "mediaType": "book", "isMissing": false, "media": { "metadata": { "title": "הארי פוטר ואבן החכמים", "authorName": "ג׳יי קיי רולינג" } } },
+    { "id": "li_missing", "mediaType": "book", "isMissing": true, "media": { "metadata": { "title": "Deleted From Disk" } } }
+  ],
+  "total": 3,
+  "limit": 100,
+  "page": 0,
+  "sortBy": "media.metadata.title",
+  "sortDesc": false,
+  "mediaType": "book",
+  "minified": true
+}

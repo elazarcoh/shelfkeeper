@@ -1,0 +1,7 @@
+[
+  { "id": 100, "authorId": 1, "bookId": 10, "path": "/books/Brandon Sanderson/The Final Empire/The Final Empire.epub", "size": 1024, "quality": { "quality": { "id": 3, "name": "EPUB" } } },
+  { "id": 101, "authorId": 1, "bookId": 10, "path": "/books/Brandon Sanderson/The Final Empire/The Final Empire.mobi", "size": 1024, "quality": { "quality": { "id": 2, "name": "MOBI" } } },
+  { "id": 102, "authorId": 1, "bookId": 13, "path": "/audiobooks/Brandon Sanderson/The Well of Ascension/01.mp3", "size": 1024, "quality": { "quality": { "id": 10, "name": "MP3" } } },
+  { "id": 103, "authorId": 1, "bookId": 13, "path": "/audiobooks/Brandon Sanderson/The Well of Ascension/02.mp3", "size": 1024, "quality": { "quality": { "id": 10, "name": "MP3" } } },
+  { "id": 104, "authorId": 1, "bookId": 13, "path": "/audiobooks/Brandon Sanderson/The Well of Ascension/03.mp3", "size": 1024, "quality": { "quality": { "id": 10, "name": "MP3" } } }
+]

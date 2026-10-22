@@ -1,0 +1,19 @@
+{
+  "name": "@mylib/jobs",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mylib/domain": "workspace:*",
+    "pg-boss": "^12.35.0"
+  },
+  "devDependencies": {
+    "@testcontainers/postgresql": "^11.14.0",
+    "@types/node": "^22.20.4"
+  }
+}

@@ -1,0 +1,2 @@
+DROP INDEX "reading_progress_session_day_idx";--> statement-breakpoint
+ALTER TABLE "reading_progress" ADD CONSTRAINT "reading_progress_session_edition_day_idx" UNIQUE NULLS NOT DISTINCT("session_id","edition_id","occurred_on");

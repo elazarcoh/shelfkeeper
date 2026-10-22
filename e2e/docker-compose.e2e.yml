@@ -1,0 +1,38 @@
+services:
+  db:
+    volumes: !reset []
+    tmpfs:
+      - /var/lib/postgresql/data
+  app:
+    ports: !override
+      - "18080:3000"
+    environment:
+      HARDCOVER_API_URL: http://fake-hardcover/v1/graphql
+      NLI_API_URL: http://fake-nli/openlibrary/search
+      NLI_API_KEY: fake-nli-key-e2e
+  worker:
+    environment:
+      HARDCOVER_API_URL: http://fake-hardcover/v1/graphql
+  fake-abs:
+    image: node:22-bookworm-slim
+    command: ["node", "/fake-abs/server.mjs"]
+    ports:
+      - "18081:80"
+    environment:
+      FIXTURES_DIR: /fixtures
+    volumes:
+      - ./e2e/fake-abs:/fake-abs:ro
+      - ./packages/connectors/src/audiobookshelf/fixtures:/fixtures:ro
+  fake-hardcover:
+    image: node:22-bookworm-slim
+    command: ["node", "/fake-hardcover/server.mjs"]
+    volumes:
+      - ./e2e/fake-hardcover:/fake-hardcover:ro
+  fake-nli:
+    image: node:22-bookworm-slim
+    command: ["node", "/fake-nli/server.mjs"]
+    environment:
+      FIXTURES_DIR: /fixtures
+    volumes:
+      - ./e2e/fake-nli:/fake-nli:ro
+      - ./packages/domain/src/providers/fixtures:/fixtures:ro

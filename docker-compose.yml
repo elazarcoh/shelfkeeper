@@ -1,0 +1,62 @@
+name: my-library
+services:
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: mylib
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: mylib
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mylib -d mylib"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  app:
+    build: .
+    image: my-library:latest
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://mylib:${POSTGRES_PASSWORD}@db:5432/mylib
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      APP_SECRET_KEY: ${APP_SECRET_KEY:?Set APP_SECRET_KEY in .env}
+      ASSETS_DIR: /data/assets
+    volumes:
+      - assets-data:/data/assets
+      - backup-data:/backups
+    ports:
+      - "${APP_PORT:-8080}:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  worker:
+    build: .
+    image: my-library:latest
+    restart: unless-stopped
+    command: ["node", "worker/main.js"]
+    # exactly one worker: at startup it fails any run left "running" by the previous one
+    stop_grace_period: 60s # lets an in-flight sync finish (the worker waits up to 45s) before SIGKILL
+    depends_on:
+      app:
+        condition: service_healthy # the app runs the migrations
+    environment:
+      DATABASE_URL: postgres://mylib:${POSTGRES_PASSWORD}@db:5432/mylib
+      APP_SECRET_KEY: ${APP_SECRET_KEY:?Set APP_SECRET_KEY in .env}
+      ASSETS_DIR: /data/assets
+    volumes:
+      - assets-data:/data/assets
+      - backup-data:/backups
+
+volumes:
+  db-data: {}
+  assets-data: {}
+  backup-data: {}

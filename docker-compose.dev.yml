@@ -1,0 +1,61 @@
+name: mylib-dev
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: mylib
+      POSTGRES_PASSWORD: mylib
+      POSTGRES_DB: mylib
+    ports:
+      - "5433:5432"
+    volumes:
+      - dev-db:/var/lib/postgresql/data
+
+  # opt-in: pnpm dev:abs (profile "sources"); seed it first with pnpm dev:seed-audiobooks
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    profiles: ["sources"]
+    ports:
+      - "13378:80"
+    volumes:
+      - ./dev-data/abs/config:/config
+      - ./dev-data/abs/metadata:/metadata
+      - ./dev-data/audiobooks:/audiobooks:ro
+
+  # opt-in: pnpm dev:calibre (profile "sources"); seed it first with pnpm dev:seed-ebooks
+  calibre:
+    build: ./dev/calibre
+    profiles: ["sources"]
+    ports:
+      - "18083:8080"
+    volumes:
+      - ./dev-data/calibre:/library
+      - ./dev-data/ebooks:/import:ro
+
+  # opt-in: pnpm dev:readarr — one-time setup in README → "Dev sources"
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    profiles: ["sources"]
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+      TZ: Etc/UTC
+    ports:
+      - "8787:8787"
+    volumes:
+      - ./dev-data/readarr/config:/config
+      - ./dev-data/ebooks:/books
+
+  # opt-in: pnpm dev:chaptarr — one-time setup in README → "Dev sources"
+  chaptarr:
+    image: chaptarr/chaptarr:latest
+    profiles: ["sources"]
+    ports:
+      - "8789:8789"
+    volumes:
+      - ./dev-data/chaptarr/config:/config
+      - ./dev-data/ebooks:/books
+      - ./dev-data/audiobooks:/audiobooks
+
+volumes:
+  dev-db: {}

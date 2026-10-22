@@ -1,0 +1,1 @@
+CREATE INDEX "source_item_others_idx" ON "source_item" USING gin ((("normalized" -> 'identifiers') -> 'others') jsonb_path_ops);

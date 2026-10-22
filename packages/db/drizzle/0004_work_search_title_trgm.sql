@@ -1,0 +1,1 @@
+CREATE INDEX "work_search_title_trgm_idx" ON "work_search" USING gin ("title_text" gin_trgm_ops);

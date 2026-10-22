@@ -1,0 +1,1 @@
+ALTER TABLE "work_search" ADD COLUMN "acronyms" text;

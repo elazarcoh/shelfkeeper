@@ -1,0 +1,39 @@
+[ {
+  "@id" : "https://www.nli.org.il/en/books/NNL_ALEPH990026932820205171",
+  "http://purl.org/dc/elements/1.1/non_standard_date" : [ {
+    "@value" : "תש\"ע 2010"
+  } ],
+  "http://purl.org/dc/elements/1.1/type" : [ {
+    "@value" : "book"
+  } ],
+  "http://purl.org/dc/elements/1.1/format" : [ {
+    "@value" : "89, [4] עמודים ; 23 ס\"מ."
+  } ],
+  "http://purl.org/dc/elements/1.1/source" : [ {
+    "@value" : "The National Library of Israel"
+  } ],
+  "http://purl.org/dc/elements/1.1/linkToMarc" : [ {
+    "@id" : "https://iiif.nli.org.il/IIIFv21/marc/bib/990026932820205171"
+  } ],
+  "http://purl.org/dc/elements/1.1/creator" : [ {
+    "@value" : "גרוסמן, חגית, 1976-$$Qגרוסמן, חגית, 1976-"
+  } ],
+  "http://purl.org/dc/elements/1.1/recordid" : [ {
+    "@value" : "990026932820205171"
+  } ],
+  "http://purl.org/dc/elements/1.1/language" : [ {
+    "@value" : "heb"
+  } ],
+  "http://purl.org/dc/elements/1.1/isbn" : [ {
+    "@value" : "9789655310320"
+  } ],
+  "http://purl.org/dc/elements/1.1/publisher" : [ {
+    "@value" : "[תל אביב] : קשב לשירה"
+  } ],
+  "http://purl.org/dc/elements/1.1/identifier" : [ {
+    "@value" : "NNL_ALEPH21280677260005171"
+  } ],
+  "http://purl.org/dc/elements/1.1/title" : [ {
+    "@value" : "לויתני האפר / חגית גרוסמן."
+  } ]
+} ]

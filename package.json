@@ -1,0 +1,37 @@
+{
+  "name": "my-library",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @mylib/server --filter @mylib/worker --filter @mylib/web dev",
+    "dev:abs": "docker compose -f docker-compose.dev.yml --profile sources up -d audiobookshelf",
+    "dev:seed-audiobooks": "node scripts/seed-dev-audiobooks.mjs",
+    "dev:seed-ebooks": "node scripts/seed-dev-ebooks.mjs",
+    "dev:seed-demo": "pnpm --filter @mylib/server exec tsx src/dev-seed-demo.ts",
+    "dev:calibre": "docker compose -f docker-compose.dev.yml --profile sources up -d --build calibre",
+    "dev:readarr": "docker compose -f docker-compose.dev.yml --profile sources up -d readarr",
+    "dev:chaptarr": "docker compose -f docker-compose.dev.yml --profile sources up -d chaptarr",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "check": "pnpm typecheck && pnpm lint && pnpm test",
+    "db:up": "docker compose -f docker-compose.dev.yml up -d",
+    "db:down": "docker compose -f docker-compose.dev.yml down",
+    "db:generate": "pnpm --filter @mylib/db db:generate",
+    "e2e": "pnpm --filter @mylib/e2e test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^22.20.4",
+    "eslint": "^9.39.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.70.1",
+    "vitest": "^3.2.7",
+    "yaml": "^2.9.1"
+  },
+  "packageManager": "pnpm@10.34.5"
+}

@@ -1,0 +1,70 @@
+{
+  "url": "https://simania.co.il/authorDetails.php?itemId=980962",
+  "title": "אתר אינטרנט",
+  "ld": [
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "https://simania.co.il/authorDetails.php?itemId=2280",
+      "name": "ברנדון סנדרסון",
+      "url": "https://simania.co.il/authorDetails.php?itemId=2280",
+      "jobTitle": "סופר",
+      "inLanguage": "he",
+      "description": "ברנדון סנדרסון הוא סופר פנטזיה אמריקאי. נודע בעיקר בזכות יקום הקוסמיר בו רוב ספריו מתרחשים, לרבות שתי הסדרות הפופולריות ",
+      "image": "https://cdn.simania.co.il/images/authorsById/2280.jpg"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "סימניה",
+          "item": "https://simania.co.il"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "סופרים",
+          "item": "https://simania.co.il/authors"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "ברנדון סנדרסון",
+          "item": "https://simania.co.il/authorDetails.php?itemId=2280"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "viewport": "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=3, user-scalable=yes",
+    "next-size-adjust": "",
+    "theme-color": "#2563eb",
+    "color-scheme": "light",
+    "description": "ביוגרפיה של סופר ברנדון סנדרסון - מחבר קצב המלחמה ב - ספרים, ביקורות והמלצות באתר סימניה. דירוג 4.8 כוכבים (24 ביקורות) • 10 ספרים",
+    "keywords": "ברנדון סנדרסון, ספרים, סופר, סופרת, ביוגרפיה, ספרות, ספרים, ביקורות ספרים, קהילת קוראים, סימניה, ספרות עברית, ספרות מתורגמת",
+    "format-detection": "telephone=no",
+    "og:locale": "he_IL",
+    "og:locale:alternate": "en_US",
+    "mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-title": "Simania",
+    "apple-mobile-web-app-status-bar-style": "default",
+    "og:title": "סופר ברנדון סנדרסון | סימניה",
+    "og:description": "ביוגרפיה של סופר ברנדון סנדרסון - מחבר קצב המלחמה ב - ספרים, ביקורות והמלצות באתר סימניה. דירוג 4.8 כוכבים (24 ביקורות) • 10 ספרים",
+    "og:url": "https://simania.co.il/authorDetails.php?itemId=688228",
+    "og:site_name": "סימניה",
+    "og:image": "https://cdn.simania.co.il/images/authorsById/2280.jpg",
+    "og:image:width": "1200",
+    "og:image:height": "630",
+    "og:image:alt": "סופר ברנדון סנדרסון | סימניה",
+    "og:type": "profile",
+    "twitter:card": "summary_large_image",
+    "twitter:site": "@simania_il",
+    "twitter:title": "סופר ברנדון סנדרסון | סימניה",
+    "twitter:description": "ביוגרפיה של סופר ברנדון סנדרסון - מחבר קצב המלחמה ב - ספרים, ביקורות והמלצות באתר סימניה. דירוג 4.8 כוכבים (24 ביקורות) • 10 ספרים",
+    "twitter:image": "https://cdn.simania.co.il/images/authorsById/2280.jpg",
+    "twitter:image:alt": "סופר ברנדון סנדרסון | סימניה"
+  }
+}

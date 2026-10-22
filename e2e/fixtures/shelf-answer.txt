@@ -1,0 +1,11 @@
+Here is what I can read on the shelf, top to bottom:
+
+```json
+[
+  {"position":1,"title":"הנסיך הקטן","authors":["אנטואן דה סנט-אכזופרי"]},
+  {"position":2,"title":"המושבה האבודה","series":"ארטמיס פאול","authors":["אואן קולפר"],"original_title_hint":"Artemis Fowl and the Lost Colony"},
+  {"position":3,"title":"המושבה האבודה","series":"ארטמיס פאול","authors":["אואן קולפר"],"original_title_hint":"Artemis Fowl and the Lost Colony"}
+]
+```
+
+Some spines were hard to read, so check the list.

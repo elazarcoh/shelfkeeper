@@ -1,0 +1,2 @@
+ALTER TABLE "work_series" ADD COLUMN "position_end" double precision;--> statement-breakpoint
+ALTER TABLE "work_series" ADD CONSTRAINT "work_series_position_end_check" CHECK ("work_series"."position_end" is null or ("work_series"."position" is not null and "work_series"."position_end" > "work_series"."position"));

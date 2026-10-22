@@ -1,0 +1,262 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+/* An invisible >=44px hit area around a small control (checkbox, switch, x on a chip). */
+@utility touch-hit {
+    position: relative;
+    &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: max(100%, 44px);
+        height: max(100%, 44px);
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* A dir="auto" heading lines up with the page's edge instead of flipping to the right for Hebrew. */
+/* Chromium and WebKit only know the prefixed value (CSS.supports('text-align', 'match-parent') is false there);
+   each engine keeps the last declaration it understands. */
+@utility text-match-parent {
+    text-align: -webkit-match-parent;
+    text-align: match-parent;
+}
+
+/* Every page sticky bar (Library's search row, Inbox's bulk bars, Add book's submit bar): one layer, above the page's
+   content and below the shell's top bar and bottom tabs (z-40) and the dialogs and menus (z-50). */
+@utility z-page-sticky {
+    z-index: 30;
+}
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Geist Variable', sans-serif;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-format-physical: var(--format-physical);
+    --color-format-ebook: var(--format-ebook);
+    --color-format-audiobook: var(--format-audiobook);
+    --color-format-unspecified: var(--format-unspecified);
+    --color-viz-ink: var(--viz-ink);
+    --color-viz-soft: var(--viz-soft);
+    --color-viz-grid: var(--viz-grid);
+    --color-delta-up: var(--delta-up);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+    /* Stats data colours (dataviz reference palette, validated against the card surface in both modes).
+       Colour means format everywhere on the page; amounts are neutral ink. */
+    --format-physical: #2a78d6;
+    --format-ebook: #eb6834;
+    --format-audiobook: #1baf7a;
+    --format-unspecified: oklch(0.72 0 0);
+    --viz-ink: oklch(0.3 0 0);
+    --viz-soft: oklch(0.8 0 0);
+    --viz-grid: oklch(0.93 0 0);
+    --delta-up: #006300;
+    --heat-0: oklch(0.955 0 0);
+    --heat-1: oklch(0.84 0 0);
+    --heat-2: oklch(0.66 0 0);
+    --heat-3: oklch(0.46 0 0);
+    --heat-4: oklch(0.22 0 0);
+}
+
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+    --format-physical: #3987e5;
+    --format-ebook: #d95926;
+    --format-audiobook: #199e70;
+    --format-unspecified: oklch(0.5 0 0);
+    --viz-ink: oklch(0.86 0 0);
+    --viz-soft: oklch(0.45 0 0);
+    --viz-grid: oklch(0.28 0 0);
+    --delta-up: #0ca30c;
+    --heat-0: oklch(0.255 0 0);
+    --heat-1: oklch(0.4 0 0);
+    --heat-2: oklch(0.56 0 0);
+    --heat-3: oklch(0.74 0 0);
+    --heat-4: oklch(0.94 0 0);
+}
+
+/* App shell: how much room the phone bars take. Sticky page parts use top-(--top-offset) / bottom-(--bottom-offset). */
+:root {
+    --top-bar-h: 3.5rem;
+    --bottom-nav-h: 4rem;
+    --top-offset: 0px;
+    --bottom-offset: 0px;
+}
+:root:has([data-slot="app-shell"]) {
+    --top-offset: calc(var(--top-bar-h) + env(safe-area-inset-top));
+    --bottom-offset: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom));
+}
+:root:has([data-slot="app-shell"][data-bottom-nav="hidden"]) {
+    --bottom-offset: 0px;
+}
+@media (width >= 64rem) {
+    :root:has([data-slot="app-shell"]) {
+        --top-offset: 0px;
+        --bottom-offset: 0px;
+    }
+}
+/* A page's own sticky bar under the top bar (Library's search row, [data-sticky-bar]): its height, below lg only.
+   The row sets min-h-(--page-sticky-h) so this stays its real height: 44px controls + 2 × 8px padding.
+   A bar whose height varies (Inbox's wrapping bulk actions) publishes its measured height inline on <html>
+   instead, via usePageStickyBarHeight (lib/sticky-bar.ts). */
+:root {
+    --page-sticky-h: 0px;
+}
+:root:has([data-sticky-bar]) {
+    --page-sticky-h: 3.75rem;
+}
+@media (width >= 64rem) {
+    :root:has([data-sticky-bar]) {
+        --page-sticky-h: 0px;
+    }
+}
+html {
+    /* a focused field or card scrolls into view clear of the bars and of a page's sticky bar */
+    scroll-padding-top: calc(var(--top-offset) + var(--page-sticky-h));
+    scroll-padding-bottom: var(--bottom-offset);
+}
+
+/* A page with a sticky submit bar (Add book, [data-sticky-submit], below lg): a focused field scrolls clear of that bar too.
+   The bar is 44px controls + 2 × 12px padding, 5rem leaves slack for it wrapping. */
+@media (width < 64rem) {
+    html:has([data-sticky-submit]) {
+        scroll-padding-bottom: calc(max(var(--bottom-offset), var(--keyboard-inset, 0px)) + 5rem);
+    }
+}
+
+/* Estimated amounts / approximate dates: a 45° hatch in --hatch over the element's own fill (texture, so "estimated" is never colour alone). */
+.viz-hatch {
+    background-image: repeating-linear-gradient(45deg, var(--hatch, currentColor) 0 1.5px, transparent 1.5px 5px);
+}
+
+@keyframes viz-grow {
+    from { transform: scaleY(0); }
+}
+@keyframes viz-grow-x {
+    from { transform: scaleX(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+    .viz-grow { animation: viz-grow 600ms cubic-bezier(0.2, 0.8, 0.2, 1) both; transform-origin: bottom; }
+    .viz-grow-x { animation: viz-grow-x 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both; transform-origin: left; }
+    [dir="rtl"] .viz-grow-x { transform-origin: right; }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    @apply bg-background text-foreground;
+    }
+  html {
+    @apply font-sans;
+    }
+}

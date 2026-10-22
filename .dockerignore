@@ -1,0 +1,17 @@
+**/node_modules
+**/dist
+.git/*
+# only what deploy/git-version.sh reads, for the image's version (Dockerfile)
+!.git/HEAD
+!.git/packed-refs
+!.git/refs
+.git/refs/*
+!.git/refs/heads
+!.git/refs/tags
+**/.env
+.claude
+.superpowers
+docs
+e2e/test-results
+e2e/playwright-report
+dev-data

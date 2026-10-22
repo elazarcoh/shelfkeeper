@@ -1,0 +1,31 @@
+{
+  "name": "@mylib/server",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./router": "./src/router.ts"
+  },
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "build": "tsup",
+    "start": "node dist/main.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.17",
+    "@mylib/connectors": "workspace:*",
+    "@mylib/db": "workspace:*",
+    "@mylib/domain": "workspace:*",
+    "@mylib/jobs": "workspace:*",
+    "@trpc/server": "^11.19.0",
+    "hono": "^4.13.9",
+    "superjson": "^2.2.6",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@testcontainers/postgresql": "^11.14.0",
+    "@types/node": "^22.20.4",
+    "tsup": "^8.5.1",
+    "tsx": "^4.23.15"
+  }
+}

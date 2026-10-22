@@ -1,0 +1,33 @@
+{
+  "id": "li_hp1",
+  "libraryId": "lib_books",
+  "mediaType": "book",
+  "isMissing": false,
+  "isInvalid": false,
+  "addedAt": 1717000100000,
+  "updatedAt": 1717000600000,
+  "media": {
+    "metadata": {
+      "title": "הארי פוטר ואבן החכמים",
+      "subtitle": null,
+      "authors": [{ "id": "aut_2", "name": "ג׳יי קיי רולינג" }],
+      "narrators": ["שמעון כהן"],
+      "series": [{ "id": "ser_2", "name": "הארי פוטר", "sequence": "Book One" }],
+      "genres": [],
+      "publishedYear": "1998",
+      "publishedDate": "1998-06-01",
+      "publisher": "ידיעות ספרים",
+      "description": null,
+      "isbn": "978-0-7475-3269-9",
+      "asin": null,
+      "language": "Hebrew",
+      "explicit": false
+    },
+    "coverPath": null,
+    "tags": [],
+    "duration": 30000,
+    "numAudioFiles": 1,
+    "audioFiles": [{ "index": 1, "ino": "3" }],
+    "ebookFile": { "ino": "4", "ebookFormat": "epub", "metadata": { "filename": "hp1.epub", "ext": ".epub" } }
+  }
+}

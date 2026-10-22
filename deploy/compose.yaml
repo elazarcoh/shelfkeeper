@@ -1,0 +1,151 @@
+# My Library on the Pi: a Komodo stack `my-library` linked to the Komodo Repo `my-library`, which follows
+# the branch `release` (the latest release that passed CI); Komodo checks it out and builds the image on
+# the Pi from it (README → Running on a server). Data lives in DATA_DIR
+# (/srv/appdata/komodo/stacks/my-library/data), outside the checkout.
+# Every host folder must already exist (create_host_path: false): if the HDD is not mounted, the stack
+# refuses to start instead of writing onto the SD card (plan deviation 14).
+#
+# Networking (Ruling R30): the Pi's nginx is a separate container on the external `shared` network and
+# proxies to apps by container name (see deploy/nginx/mylibrary.home.arpa.conf). Only `app` joins
+# `shared`, under the fixed name `my-library`; `db` and `worker` stay on the stack's own default
+# network. The app's port is also published on localhost only, for local checks on the Pi (APP_PORT).
+name: my-library
+
+networks:
+  shared:
+    external: true
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+x-app-env: &app-env
+  DATABASE_URL: postgres://mylib:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@db:5432/mylib
+  APP_SECRET_KEY: ${APP_SECRET_KEY:?Set APP_SECRET_KEY in .env}
+  BACKUP_SCHEDULE: ${BACKUP_SCHEDULE:-0 3 * * *}
+  PROTECTED_PATHS: ${PROTECTED_PATHS:-/Media/Media:/Media/Downloads}
+  HOST_DATA_DIR: ${DATA_DIR:?Set DATA_DIR in .env}
+  HOST_BACKUP_DIR: ${BACKUP_DIR:?Set BACKUP_DIR in .env}
+  REQUIRE_VOLUME_MARKERS: "true"
+  # #52: true behind HTTPS (.env.example)
+  COOKIE_SECURE: ${COOKIE_SECURE:-false}
+  TZ: ${TZ:-Asia/Jerusalem}
+
+x-app-volumes: &app-volumes
+  - type: bind
+    source: ${DATA_DIR:?Set DATA_DIR in .env}/assets
+    target: /data/assets
+    bind:
+      create_host_path: false
+  - type: bind
+    source: ${BACKUP_DIR:?Set BACKUP_DIR in .env}
+    target: /backups
+    bind:
+      create_host_path: false
+
+services:
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    # a clean shutdown (a checkpoint) rather than crash recovery on the next start
+    stop_grace_period: 60s
+    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
+    environment:
+      POSTGRES_USER: mylib
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: mylib
+      TZ: ${TZ:-Asia/Jerusalem}
+    volumes:
+      - type: bind
+        source: ${DATA_DIR:?Set DATA_DIR in .env}/postgres
+        target: /var/lib/postgresql/data
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./postgres.conf
+        target: /etc/postgresql/postgresql.conf
+        read_only: true
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U mylib -d mylib"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+    logging: *logging
+
+  app:
+    # Built on the Pi from the checked-out tag (the repo root is one level up); `build` means never pull it.
+    # The image reads its version from the checkout's tag (Dockerfile), so no setting has to follow the
+    # release, and the one local name is simply the image of whatever is checked out.
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      args:
+        # the URL prefix the app is served under (README → Serving under a sub-path); "/" = the root
+        BASE_PATH: ${BASE_PATH:-/}
+    image: my-library:local
+    pull_policy: build
+    container_name: my-library
+    restart: unless-stopped
+    # SIGTERM reaches node through a real init; the app waits for a restore or a start-up upgrade (up to 110 s) before exiting
+    init: true
+    stop_grace_period: 120s
+    # `default` for db (and the worker's health check reaches it there too); `shared` so the Pi's
+    # nginx (its own stack, container `my-library`) can reach it by name over the external network.
+    networks:
+      - default
+      - shared
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      <<: *app-env
+      # #157: the National Library's search API key, for scanned ISBNs; the app alone uses it. Empty = off.
+      NLI_API_KEY: ${NLI_API_KEY:-}
+    volumes: *app-volumes
+    ports:
+      # loopback only: the Pi's nginx reaches the app over `shared`, not this port
+      - "127.0.0.1:${APP_PORT:-8080}:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      # a pre-upgrade backup and the migrations run before the app turns healthy
+      retries: 60
+    logging: *logging
+
+  worker:
+    # The image the app's build just produced: never pull (nothing publishes it: the app's build is the only copy).
+    image: my-library:local
+    pull_policy: never
+    restart: unless-stopped
+    command: ["node", "worker/main.js"]
+    init: true
+    # the heartbeat below is rewritten every 5 s: keep it in memory, not on the SD card
+    tmpfs:
+      - /tmp
+    # exactly one worker: at startup it fails any run left "running" by the previous one
+    stop_grace_period: 60s
+    depends_on:
+      app:
+        condition: service_healthy
+    environment:
+      <<: *app-env
+      # #106: the cloud copy of BACKUP_DIR (README → Cloud backup); the worker alone holds these. Empty = off.
+      RESTIC_REPOSITORY: ${RESTIC_REPOSITORY:-}
+      RESTIC_PASSWORD: ${RESTIC_PASSWORD:-}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+    volumes: *app-volumes
+    healthcheck:
+      # the worker touches this file every 5 s while its event loop runs
+      test: ["CMD", "node", "-e", "const s=require('node:fs').statSync('/tmp/mylib-worker-alive');process.exit(Date.now()-s.mtimeMs<60000?0:1)"]
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+    logging: *logging

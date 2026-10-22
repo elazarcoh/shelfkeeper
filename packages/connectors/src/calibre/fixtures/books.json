@@ -1,0 +1,53 @@
+{
+  "1": {
+    "title": "The Final Empire",
+    "authors": ["Brandon Sanderson"],
+    "author_sort": "Sanderson, Brandon",
+    "series": "Mistborn",
+    "series_index": 1.0,
+    "tags": ["Fantasy", "Epic"],
+    "identifiers": { "isbn": "9780765311788", "goodreads": "68428", "amazon": "B000SEIFKK" },
+    "publisher": "Tor",
+    "pubdate": "2006-07-17T04:00:00+00:00",
+    "timestamp": "2024-01-02T10:00:00+00:00",
+    "languages": ["eng"],
+    "comments": "<div><p>For a thousand years the ash fell &amp; no flowers bloomed.</p></div>",
+    "formats": ["EPUB", "MOBI"],
+    "main_format": { "EPUB": "/get/EPUB/1/Calibre_Library" },
+    "cover": "/get/cover/1/Calibre_Library",
+    "thumbnail": "/get/thumb/1/Calibre_Library",
+    "uuid": "8f0b2b52-2a3c-4d6c-9b0e-2b8f6d6c1a01",
+    "application_id": 1,
+    "user_metadata": { "#words": { "datatype": "int", "name": "Words", "#value#": 214000 } }
+  },
+  "2": {
+    "title": "הארי פוטר ואבן החכמים",
+    "authors": ["ג'יי קיי רולינג"],
+    "series": null,
+    "series_index": 1.0,
+    "tags": [],
+    "identifiers": {},
+    "publisher": null,
+    "pubdate": "0101-01-01T00:00:00+00:00",
+    "languages": ["heb"],
+    "comments": null,
+    "formats": ["EPUB"],
+    "cover": "/get/cover/2/Calibre_Library",
+    "uuid": "0d7e3f1a-5c55-4a3e-8f5b-6d1b2a9c7e02",
+    "application_id": 2,
+    "user_metadata": {}
+  },
+  "3": {
+    "title": "Notes for a book I never bought",
+    "authors": ["Unknown"],
+    "tags": [],
+    "identifiers": {},
+    "pubdate": "0101-01-01T00:00:00+00:00",
+    "languages": [],
+    "formats": [],
+    "cover": null,
+    "uuid": "5a8c3a6e-9b0e-4f4c-8d2a-1e3f5b7c9d03",
+    "application_id": 3,
+    "user_metadata": {}
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "url": "https://simania.co.il/bookdetails.php?item_id=690482",
+  "title": "ארטמיס פאול - המושבה האבודה מאת אואן קולפר | סימניה - ספרים, סופרים וחברים",
+  "ld": [
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      "additionalType": "Product",
+      "@id": "https://simania.co.il/bookdetails.php?item_id=690482",
+      "sku": "690482",
+      "productID": "690482",
+      "name": "ארטמיס פאול - המושבה האבודה",
+      "author": {
+        "@type": "Person",
+        "name": "אואן קולפר"
+      },
+      "url": "https://simania.co.il/bookdetails.php?item_id=690482",
+      "inLanguage": "he",
+      "description": "זמן רב חיכיתי שארטמיס פאול, גאון הפשע הצעיר, יפגוש יריב שקול — וסוף סוף זה קורה. גאונה צעירה נוספת גילתה שפֵיות באמת קיי",
+      "isbn": "978-965-517-5",
+      "publisher": {
+        "@type": "Organization",
+        "name": "כנרת"
+      },
+      "bookFormat": "https://schema.org/Paperback",
+      "datePublished": "2009",
+      "numberOfPages": 362,
+      "image": "https://cdn.simania.co.il/bookimages/covers69/690482.jpg",
+      "genre": "נוער » תרגום (נוער)",
+      "keywords": "נוער » תרגום (נוער), נוער, תרגום (נוער), ארטמיס פאול",
+      "about": {
+        "@type": "Thing",
+        "name": "נוער"
+      },
+      "translator": {
+        "@type": "Person",
+        "name": "(מאנגלית) עפרה אביגד"
+      },
+      "isPartOf": {
+        "@type": "BookSeries",
+        "name": "ארטמיס פאול",
+        "position": "5"
+      },
+      "workExample": {
+        "@type": "Book",
+        "@id": "https://simania.co.il/bookdetails.php?item_id=690482#edition",
+        "bookFormat": "https://schema.org/Paperback",
+        "isbn": "978-965-517-5",
+        "datePublished": "2009",
+        "inLanguage": "he"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "דף הבית",
+          "item": "https://simania.co.il"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "נוער",
+          "item": "https://simania.co.il/category.php?categoryId=14"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "ארטמיס פאול - המושבה האבודה"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "viewport": "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=3, user-scalable=yes",
+    "next-size-adjust": "",
+    "theme-color": "#2563eb",
+    "color-scheme": "light",
+    "description": "ארטמיס פאול - המושבה האבודה - ספר חמישי בסדרת ארטמיס פאול מאת אואן קולפר. דירוג 4.7 כוכבים, 123 ביקורות. קרא ביקורות וקנה בסימניה.",
+    "keywords": "ארטמיס פאול - המושבה האבודה, אואן קולפר, נוער » תרגום (נוער), ביקורות ספרים, קהילת קוראים, תרגום (מאנגלית) עפרה אביגד, סדרת ארטמיס פאול, ספרים, ביקורות ספרים, ק",
+    "format-detection": "telephone=no",
+    "og:locale": "he_IL",
+    "og:locale:alternate": "en_US",
+    "book:author": "אואן קולפר",
+    "book:isbn": "978-965-517-5",
+    "book:release_date": "2009",
+    "book:tag": "362 עמודים",
+    "rating:value": "4.6667",
+    "rating:count": "123",
+    "link-preload": "<https://cdn.simania.co.il/bookimages/covers69/690482.jpg>; rel=preload; as=image; fetchpriority=high",
+    "mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-title": "Simania",
+    "apple-mobile-web-app-status-bar-style": "default",
+    "og:title": "ארטמיס פאול - המושבה האבודה מאת אואן קולפר",
+    "og:description": "ארטמיס פאול - המושבה האבודה - ספר חמישי בסדרת ארטמיס פאול מאת אואן קולפר. דירוג 4.7 כוכבים, 123 ביקורות. קרא ביקורות וקנה בסימניה.",
+    "og:url": "https://simania.co.il/bookdetails.php?item_id=690482",
+    "og:site_name": "סימניה",
+    "og:image": "https://cdn.simania.co.il/bookimages/covers69/690482.jpg",
+    "og:image:width": "400",
+    "og:image:height": "600",
+    "og:image:alt": "ארטמיס פאול - המושבה האבודה מאת אואן קולפר",
+    "og:type": "book",
+    "twitter:card": "summary_large_image",
+    "twitter:site": "@simania_il",
+    "twitter:title": "ארטמיס פאול - המושבה האבודה מאת אואן קולפר",
+    "twitter:description": "ארטמיס פאול - המושבה האבודה - ספר חמישי בסדרת ארטמיס פאול מאת אואן קולפר. דירוג 4.7 כוכבים, 123 ביקורות. קרא ביקורות וקנה בסימניה.",
+    "twitter:image": "https://cdn.simania.co.il/bookimages/covers69/690482.jpg",
+    "twitter:image:alt": "ארטמיס פאול - המושבה האבודה מאת אואן קולפר"
+  }
+}
