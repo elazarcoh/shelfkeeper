@@ -1,4 +1,4 @@
-# Developing My Library
+# Developing Shelfkeeper
 
 [← Back to the README](../README.md)
 
@@ -31,7 +31,7 @@ pnpm dev:seed-audiobooks -- --count 3   # copies 3 small book folders from Z:\Me
 pnpm dev:abs                           # Audiobookshelf on http://localhost:13378
 ```
 
-First time only, in Audiobookshelf: create the root user; add a library of type *Books* with the folder `/audiobooks` and let it scan; copy your user's API token. Then in My Library (`pnpm dev`): Admin → Sources → Add source with `http://localhost:13378` and that token.
+First time only, in Audiobookshelf: create the root user; add a library of type *Books* with the folder `/audiobooks` and let it scan; copy your user's API token. Then in Shelfkeeper (`pnpm dev`): Admin → Sources → Add source with `http://localhost:13378` and that token.
 
 Live connector check: `ABS_URL=http://localhost:13378 ABS_TOKEN=<token> pnpm vitest run packages/connectors/src/audiobookshelf/live.test.ts`.
 

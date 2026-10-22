@@ -1,10 +1,10 @@
-# My Library
+# Shelfkeeper
 
 **A self-hosted library for the whole household: every book you own, on paper, as an ebook or as an audiobook, in one catalog, with each person's own reading life on top.**
 
 ![The Library: covers, series stacks, filters by format, status and rating](docs/images/library.png)
 
-Paper books on the shelves, ebooks in Calibre, audiobooks in Audiobookshelf, a reading log in a spreadsheet, and nobody remembers who borrowed what. My Library puts all of it in one place, on a server in your home, for everyone in the house.
+Paper books on the shelves, ebooks in Calibre, audiobooks in Audiobookshelf, a reading log in a spreadsheet, and nobody remembers who borrowed what. Shelfkeeper puts all of it in one place, on a server in your home, for everyone in the house.
 
 A personal project, built for one household and shared as is: free to use, change and share under the [MIT license](#license). No support, and no promise of updates.
 
@@ -39,14 +39,14 @@ A personal project, built for one household and shared as is: free to use, chang
 
 ![The Library in dark mode](docs/images/dark-library.png)
 
-Every screenshot shows the built-in demo household (`pnpm dev:seed-demo`); the covers are the app's own placeholders for books without one.
+Every screenshot shows the built-in demo household (`pnpm dev:seed-demo`); the covers are the app's own placeholders for books without one. Inside the app, Shelfkeeper still calls itself "My Library", its name from before it was published.
 
 ## Try it
 
 You need Docker.
 
 ```sh
-git clone https://github.com/elazarcoh/shelfkeeper.git my-library && cd my-library
+git clone https://github.com/elazarcoh/shelfkeeper.git && cd shelfkeeper
 cp .env.example .env        # set POSTGRES_PASSWORD and APP_SECRET_KEY (the file shows how to generate it)
 docker compose up -d --build
 ```
@@ -68,7 +68,7 @@ This compose file keeps everything in Docker volumes, which is fine for trying t
 
 ## Security
 
-My Library is built for a home network. It serves plain HTTP unless you put an HTTPS proxy in front (then set `COOKIE_SECURE=true`). Passwords are hashed, saved source logins are encrypted with `APP_SECRET_KEY`, and sign-in attempts are throttled, but it has had no security audit and no two-factor sign-in. Don't expose it to the internet; reach it from outside over a VPN instead.
+Shelfkeeper is built for a home network. It serves plain HTTP unless you put an HTTPS proxy in front (then set `COOKIE_SECURE=true`). Passwords are hashed, saved source logins are encrypted with `APP_SECRET_KEY`, and sign-in attempts are throttled, but it has had no security audit and no two-factor sign-in. Don't expose it to the internet; reach it from outside over a VPN instead.
 
 ## Stack
 
@@ -93,4 +93,4 @@ Layering: `packages/domain` → `packages/db` (all per-user queries go through `
 
 [MIT](LICENSE): free to use, change and share. The software comes as is, without warranty of any kind. Keep your own backups.
 
-My Library is not affiliated with Simania, Open Library, the National Library of Israel, Hardcover, Audiobookshelf, Calibre, Readarr or Chaptarr. It reads only what you ask it to from them, with your own keys where they need one, so their terms of use still apply to you.
+Shelfkeeper is not affiliated with Simania, Open Library, the National Library of Israel, Hardcover, Audiobookshelf, Calibre, Readarr or Chaptarr. It reads only what you ask it to from them, with your own keys where they need one, so their terms of use still apply to you.
