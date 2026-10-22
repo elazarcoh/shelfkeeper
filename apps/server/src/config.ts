@@ -50,7 +50,7 @@ export interface Config {
   hostDataDir: string | null
   hostBackupDir: string | null
   requireVolumeMarkers: boolean
-  /** '' (served at the root) or '/prefix': the URL prefix the app is served under (README → Serving under a sub-path) */
+  /** '' (served at the root) or '/prefix': the URL prefix the app is served under (docs/install.md → Serving under a sub-path) */
   basePath: string
   /** replaces the Hardcover GraphQL endpoint (tests, a proxy); null = the real one */
   hardcoverApiUrl: string | null

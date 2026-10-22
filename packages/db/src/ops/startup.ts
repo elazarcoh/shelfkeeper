@@ -10,7 +10,7 @@ import { describeError, exists } from './fs-utils'
 import { applyMigrations, MigrationFailedError, migrationStatus } from './migrations'
 import type { PgToolsOptions } from './pg-tools'
 
-/** Created by hand at install time (README → Running on a server); its absence means the disk isn't mounted (plan deviation 14). */
+/** Created by hand at install time (docs/install.md → Running on a server); its absence means the disk isn't mounted (plan deviation 14). */
 export const VOLUME_MARKER = '.my-library-volume'
 
 export interface StartupCheckInput {
@@ -123,7 +123,7 @@ export async function checkStartup(input: StartupCheckInput): Promise<string[]> 
       ['BACKUP_DIR', input.backupDir],
     ]
     for (const [label, dir] of volumes) {
-      if (!(await exists(path.join(dir, VOLUME_MARKER)))) problems.push(`${label} has no ${VOLUME_MARKER} file: is the disk mounted? (README → Running on a server)`)
+      if (!(await exists(path.join(dir, VOLUME_MARKER)))) problems.push(`${label} has no ${VOLUME_MARKER} file: is the disk mounted? (docs/install.md → Running on a server)`)
     }
   }
   return problems
@@ -239,7 +239,7 @@ export interface PrepareDatabaseOptions {
   testOnly?: { lockCheck?: OpsLockTestOnly['check'] }
 }
 
-const rollBackHint = (backup: string | null): string => `${backup === null ? 'Restore your latest backup' : `Restore ${backup}`} with the previous version (README → Roll back).`
+const rollBackHint = (backup: string | null): string => `${backup === null ? 'Restore your latest backup' : `Restore ${backup}`} with the previous version (docs/install.md → Roll back).`
 const earlierApplied = (applied: readonly string[]): string => (applied.length === 0 ? '' : ` Earlier migrations of this upgrade were applied: ${applied.join(', ')}.`)
 
 /**
@@ -299,7 +299,7 @@ export async function prepareDatabase(env: OpsEnv, options: PrepareDatabaseOptio
     async (guard) => {
       const status = await migrationStatus(env.databaseUrl, env.migrationsFolder)
       if (status.unknown.length > 0) {
-        return maintenance('newer-database', 'The database is newer than this app. Restore the pre-upgrade backup, or run the newer image (README → Roll back).', null)
+        return maintenance('newer-database', 'The database is newer than this app. Restore the pre-upgrade backup, or run the newer image (docs/install.md → Roll back).', null)
       }
       // review #4: the migration an earlier attempt lost the database in committed after all
       const inFlight = memo.inFlight

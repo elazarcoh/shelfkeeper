@@ -2,7 +2,7 @@
 # Prints the release a checkout is, from its git metadata alone (no git binary): the highest vX.Y.Z tag
 # on the checked-out commit, without the "v". A commit with no release tag prints 0.0.0-dev+<short sha>.
 # Exits 1 when there is no readable HEAD. Usage: git-version.sh <the .git folder>
-# The Pi builds the image from Komodo's checkout of a release tag (README → Running on a server), so the
+# The Pi builds the image from Komodo's checkout of a release tag (docs/install.md → Running on a server), so the
 # image names its own version and nobody has to keep a setting in step with the tag.
 git_dir=${1:-.git}
 

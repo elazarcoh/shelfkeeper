@@ -12,7 +12,7 @@ const Env = z.object({
   BACKUP_SCHEDULE: CronExpression.default('0 3 * * *'),
   TZ: z.string().min(1).default('UTC'),
   MIGRATIONS_DIR: z.string().min(1).optional(),
-  // #106: the cloud copy (README → Cloud backup); unset = off
+  // #106: the cloud copy (docs/install.md → Cloud backup); unset = off
   RESTIC_REPOSITORY: z.string().optional(),
   RESTIC_PASSWORD: z.string().optional(),
   RESTIC_BIN: z.string().min(1).optional(),

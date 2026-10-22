@@ -1,4 +1,4 @@
-# My Library under a sub-path of an existing site, e.g. http://192.168.1.50/mylibrary/ (README → Serving
+# My Library under a sub-path of an existing site, e.g. http://192.168.1.50/mylibrary/ (docs/install.md → Serving
 # under a sub-path). These are `location` blocks, not a server: paste them into (or `include` them from) the
 # `server { ... }` block that answers for that host, then reload nginx. The image must be built with
 # BASE_PATH=/mylibrary (deploy/.env); to use another prefix, change it here and there alike.

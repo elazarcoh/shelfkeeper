@@ -17,11 +17,11 @@ COPY e2e/package.json e2e/
 COPY patches/ patches/
 RUN pnpm install --frozen-lockfile
 COPY . .
-# BASE_PATH (e.g. /mylibrary) serves the app under that URL prefix: the web build bakes it in (README → Serving under a sub-path)
+# BASE_PATH (e.g. /mylibrary) serves the app under that URL prefix: the web build bakes it in (docs/install.md → Serving under a sub-path)
 ARG BASE_PATH=/
 RUN BASE_PATH=$BASE_PATH pnpm --filter @mylib/web build && pnpm --filter @mylib/server build && pnpm --filter @mylib/worker build
 
-# The release this image is: CI passes APP_VERSION (its tag); a build from a checkout (the Pi, README →
+# The release this image is: CI passes APP_VERSION (its tag); a build from a checkout (the Pi, docs/install.md →
 # Running on a server) reads the vX.Y.Z tag on the checked-out commit from the context's .git refs
 # (.dockerignore lets only HEAD and the refs in). `.gi[t]` matches nothing when there is no .git at all.
 FROM --platform=$BUILDPLATFORM node:22-bookworm-slim AS version

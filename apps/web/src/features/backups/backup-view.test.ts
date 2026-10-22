@@ -38,7 +38,7 @@ describe('backup view helpers', () => {
 
   it('describes the cloud copy (#106)', () => {
     const at = new Date('2026-10-15T03:05:00Z')
-    expect(cloudLine(null)).toEqual({ text: 'Cloud copy: not set up (README → Cloud backup).', tone: 'muted' })
+    expect(cloudLine(null)).toEqual({ text: 'Cloud copy: not set up (docs/install.md → Cloud backup).', tone: 'muted' })
     expect(cloudLine({ configured: true, lastSuccess: null, lastFailure: null }).text).toBe('Cloud copy: set up, waiting for the first copy.')
     const copied = cloudLine({ configured: true, lastSuccess: { at, file: 'a.zip', warning: null }, lastFailure: null })
     expect(copied.tone).toBe('muted')

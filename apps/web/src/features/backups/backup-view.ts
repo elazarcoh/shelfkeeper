@@ -60,7 +60,7 @@ export interface CloudView {
 
 /** #106: one line about the cloud copy on Admin → Backups, and whether it is bad news. */
 export function cloudLine(cloud: CloudView | null): { text: string; tone: 'muted' | 'warning' | 'error' } {
-  if (cloud === null || !cloud.configured) return { text: 'Cloud copy: not set up (README → Cloud backup).', tone: 'muted' }
+  if (cloud === null || !cloud.configured) return { text: 'Cloud copy: not set up (docs/install.md → Cloud backup).', tone: 'muted' }
   if (cloud.lastFailure !== null) return { text: `The last cloud copy failed (${new Date(cloud.lastFailure.at).toLocaleString()}): ${cloud.lastFailure.error}`, tone: 'error' }
   if (cloud.lastSuccess === null) return { text: 'Cloud copy: set up, waiting for the first copy.', tone: 'muted' }
   const line = `Last cloud copy: ${new Date(cloud.lastSuccess.at).toLocaleString()}, verified.`

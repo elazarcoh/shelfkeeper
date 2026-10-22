@@ -32,7 +32,7 @@ services:
       - ./dev-data/calibre:/library
       - ./dev-data/ebooks:/import:ro
 
-  # opt-in: pnpm dev:readarr — one-time setup in README → "Dev sources"
+  # opt-in: pnpm dev:readarr — one-time setup in docs/development.md → "Dev sources"
   readarr:
     image: lscr.io/linuxserver/readarr:develop
     profiles: ["sources"]
@@ -46,7 +46,7 @@ services:
       - ./dev-data/readarr/config:/config
       - ./dev-data/ebooks:/books
 
-  # opt-in: pnpm dev:chaptarr — one-time setup in README → "Dev sources"
+  # opt-in: pnpm dev:chaptarr — one-time setup in docs/development.md → "Dev sources"
   chaptarr:
     image: chaptarr/chaptarr:latest
     profiles: ["sources"]
